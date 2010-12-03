@@ -1,0 +1,10 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="configure.url">/admin/plugins/flowdock/configurePlugin.action</param>
+    </plugin-info>
+
+	<component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="flowdockChangeListener"/>
+</atlassian-plugin>
