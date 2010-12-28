@@ -42,6 +42,7 @@ public class ChangeListener {
 		result.put("title", event.getPage().getDisplayTitle());
 		result.put("content", event.getContent().getContent());
 		result.put("user", event.getPage().getLastModifierName());
+		result.put("email", event.getPage().getUserAccessor().getUser(event.getNew().getLastModifierName()).getEmail());
 		result.put("space", event.getPage().getSpace().getName());
 		
 		return result;
