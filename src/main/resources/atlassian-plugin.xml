@@ -24,6 +24,11 @@
         	<action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
 				<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
 			</action>
+			<action name="save" method="save" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+				<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+				<result name="error" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+				<result name="success" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+			</action>
     	</package>
 	</xwork>
 

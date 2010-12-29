@@ -16,6 +16,12 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		return INPUT;
 	}
 	
+	public String save() {
+		this.updateSpacesList();
+		addActionMessage(getText("successfully.saved.api.keys"));
+		return SUCCESS;
+	}
+	
 	@Override
 	public String getActionName(String fullClassName) {
 		return "Configure Flowdock integration";
