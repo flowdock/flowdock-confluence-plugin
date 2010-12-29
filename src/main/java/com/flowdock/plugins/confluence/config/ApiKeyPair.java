@@ -1,22 +1,31 @@
 package com.flowdock.plugins.confluence.config;
 
+import com.atlassian.confluence.spaces.Space;
+
 public class ApiKeyPair {
-	private String space;
-	private String apiKey;
+	private Space space;
+	private String spaceKey; // when Space is not available, use this as an ID
+	private String apiKey; // flowdock API token
 	
 	public ApiKeyPair() {
 	}
 	
-	public ApiKeyPair(String space, String key) {
+	public ApiKeyPair(Space space, String key) {
 		this.setSpace(space);
 		this.setApiKey(key);
 	}
-
-	public void setSpace(String space) {
-		this.space = space;
+	
+	public ApiKeyPair(String spaceKey, String apiKey) {
+		this.spaceKey = spaceKey;
+		this.setApiKey(apiKey);
 	}
 
-	public String getSpace() {
+	public void setSpace(Space space) {
+		this.space = space;
+		this.spaceKey = space.getKey();
+	}
+
+	public Space getSpace() {
 		return space;
 	}
 
@@ -26,5 +35,9 @@ public class ApiKeyPair {
 
 	public String getApiKey() {
 		return apiKey;
+	}
+	
+	public String getSpaceKey() {
+		return this.spaceKey;
 	}
 }

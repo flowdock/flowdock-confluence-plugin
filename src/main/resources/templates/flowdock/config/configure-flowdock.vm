@@ -6,27 +6,29 @@
 	#parse ( "/template/includes/actionmessages.vm" )
 	#parse ( "/template/includes/actionerrors.vm" )
 	
-	<p>Flowdock is the super bestest tool. Get instructions from da website.</p>
+	$action.getText("flowdock.config.introtext")
 	
-	#if ($spaces.size() > 0)
+	#if ($apiKeyPairs.size() > 0)
 		<form action="save.action" method="post">
 		<table border=1>
-		#foreach ($space in $spaces)
+		#foreach ($apiKeyPair in $apiKeyPairs)
 			<tr>
 				<td>
-					<strong>$space.name</strong><br/>
-					$space.description.toString()
+					<strong>$apiKeyPair.space.name</strong><br/>
+					$apiKeyPair.space.description.toString()
+					<input type="hidden" name="spaceKeys" value="$apiKeyPair.spaceKey"/>
 				</td>
 				<td>
-					Flowdock API key: <input type="text" size=20 name="api_for_space"/>
+					$action.getText("flowdock.config.api.key.label"):
+					<input type="text" size=20 name="apiKeys" value="$!generalUtil.escapeForJavascript($apiKeyPair.apiKey)"/>
 				</td>
 			</tr>
 		#end
 		</table>
-		<input type="submit" value="Save changes"/>
+		<input type="submit" value="$action.getText("flowdock.config.save")"/>
 		</form>
 	#else
-		<p>No spaces configured. Please add some spaces first.</p>
+		<p>$action.getText("flowdock.config.no.spaces")</p>
 	#end
 </body>
 </html>

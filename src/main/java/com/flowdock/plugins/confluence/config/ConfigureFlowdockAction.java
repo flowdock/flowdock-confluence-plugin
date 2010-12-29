@@ -1,30 +1,41 @@
 package com.flowdock.plugins.confluence.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.atlassian.confluence.core.ConfluenceActionSupport;
-import com.atlassian.confluence.spaces.Space;
-import com.atlassian.confluence.spaces.SpaceManager;
 
 public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 	private static final long serialVersionUID = -5732284806136026378L;
-	private SpaceManager spaceManager = null;
-	private List<Space> spaces;
+	
+	// Bean configured
+	private FlowdockConfigurationManager flowdockConfigurationManager;
+	
+	// For templates
+	private List<ApiKeyPair> apiKeyPairs;
+	
+	// POST data
+	private String[] spaceKeys;
+	private String[] apiKeys;
 	
 	public String input() {
-		this.updateSpacesList();
+		this.updateTemplateData();
 		return INPUT;
 	}
 	
 	public String save() {
-		this.updateSpacesList();
+		this.updateTemplateData();
 		addActionMessage(getText("successfully.saved.api.keys"));
+		
+		List<ApiKeyPair> pairs = this.parseApiKeyPairs();
+		this.flowdockConfigurationManager.setFlowdockApiKeys(pairs);
+		
 		return SUCCESS;
 	}
 	
 	@Override
 	public String getActionName(String fullClassName) {
-		return "Configure Flowdock integration";
+		return getText("action.name");
 	}
 
 	@Override
@@ -32,15 +43,41 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		return true; // TODO PermissionManager.hasPermission(User,Permission,Object)
 	}
 	
-	public void setSpaceManager(SpaceManager manager) {
-		this.spaceManager = manager;
+	public void setFlowdockConfigurationManager(FlowdockConfigurationManager manager) {
+		this.flowdockConfigurationManager = manager;
 	}
 	
-	public List<Space> getSpaces() {
-		return this.spaces;
+	public List<ApiKeyPair> getApiKeyPairs() {
+		return this.apiKeyPairs;
 	}
 	
-	private void updateSpacesList() {
-		this.spaces = this.spaceManager.getAllSpaces();
+	public void setSpaceKeys(String[] keys) {
+		this.spaceKeys = keys;
+	}
+	
+	public void setApiKeys(String[] keys) {
+		this.apiKeys = keys;
+	}
+	
+	private void updateTemplateData() {
+		this.updateApiKeyPairs();
+	}
+	
+	private void updateApiKeyPairs() {
+		this.apiKeyPairs = this.flowdockConfigurationManager.getFlowdockApiKeys();
+	}
+	
+	// Uses HTTP POST data to generate a list.
+	private List<ApiKeyPair> parseApiKeyPairs() {
+		List<ApiKeyPair> result = new ArrayList<ApiKeyPair>();
+		if (this.spaceKeys == null || this.apiKeys == null || this.spaceKeys.length != this.apiKeys.length) {
+			return result;
+		}
+		
+		for (int i=0; i<this.spaceKeys.length; i++) {
+			result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
+		}
+		
+		return result;
 	}
 }
