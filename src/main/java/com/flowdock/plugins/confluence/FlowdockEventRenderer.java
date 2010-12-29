@@ -1,8 +1,6 @@
 package com.flowdock.plugins.confluence;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.jrcs.diff.DifferentiationFailedException;
@@ -15,15 +13,14 @@ import com.atlassian.confluence.event.events.content.page.PageCreateEvent;
 import com.atlassian.confluence.event.events.content.page.PageEvent;
 import com.atlassian.confluence.event.events.content.page.PageTrashedEvent;
 import com.atlassian.confluence.event.events.content.page.PageUpdateEvent;
-import com.atlassian.confluence.mail.notification.listeners.NotificationData;
-import com.atlassian.confluence.mail.notification.listeners.PageNotificationsListener;
-import com.atlassian.confluence.pages.AbstractPage;
-import com.atlassian.confluence.spaces.Space;
 import com.atlassian.user.User;
 
 /**
- * This class kindly abuses Atlassian's own mail notification listener. But instead
- * of sending emails, it stores the notification data.
+ * This class tries to figure out all relevant information from an event.
+ * 
+ * It's inspired by Atlassian's own PageNotificationsListener and
+ * AbstractNotificationsListener. However, overriding those classes
+ * turned out to be a mess, so everything's re-implemented in this class.
  * 
  * @author mutru
  *
@@ -50,7 +47,7 @@ public class FlowdockEventRenderer {
 			result.put("user", user.getFullName());
 		} else if (event instanceof PageUpdateEvent) {
 			result.put("event", "update");
-			// TODO: add diff
+			result.put("diff", getDiff((PageUpdateEvent)event));
 		} else {
 			throw new RuntimeException("Unknown page event type.");
 		}
@@ -58,24 +55,26 @@ public class FlowdockEventRenderer {
 		return result;
 	}
 	
-	private List<String> getDiff(PageUpdateEvent event) {
+	private String getDiff(PageUpdateEvent event) {
 		StaticHtmlChangeChunkRenderer renderer = StaticHtmlChangeChunkRenderer.INSTANCE;
 		ContentEntityObject originalContent = event.getOriginalPage();
 		ContentEntityObject content = event.getPage();
-		LinkedList<String> formattedChunks = new LinkedList<String>();
+		StringBuffer output = new StringBuffer();
 		
 		try {
 			ConfluenceDiff diff = new ConfluenceDiff(originalContent, content, true);
 			
 			for (ChangeChunk chunk : diff.getChunks()) {
+				// example chunk:
+				// <tr><td class="diff-added-lines" style="background-color: #dfd;"> <br>THIS IS SO AWESOME <br></td></tr>
 				String chunkText = renderer.getFormattedText(chunk);
-				formattedChunks.add(chunkText);
+				output.append(chunkText);
 			}
 			
 		} catch (DifferentiationFailedException e) {
 			// There's nothing we can do about it - diff failed.
 		}
 		
-		return formattedChunks;
+		return output.toString();
 	}
 }

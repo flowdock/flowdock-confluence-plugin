@@ -21,6 +21,10 @@ public class FlowdockConnection {
 	}
 	
 	public static void sendApiMessage(Map<String, String> params) {
+		if (params == null) {
+			return;
+		}
+		
 		try {
 			URL apiUrl = getApiUrl();
 			postData(apiUrl, params);
@@ -71,6 +75,6 @@ public class FlowdockConnection {
 	}
 	
 	private static URL getApiUrl() throws MalformedURLException {
-		return new URL("https://api.tuntivirta.com/lol/confluence");
+		return new URL("http://www.postbin.org/r8amos");
 	}
 }
