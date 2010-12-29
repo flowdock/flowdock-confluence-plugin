@@ -44,6 +44,11 @@ public class FlowdockConfigurationManager {
 		return result;
 	}
 	
+	/**
+	 * Save listed ApiKeys.
+	 * 
+	 * @param apiKeys
+	 */
 	public void setFlowdockApiKeys(List<ApiKeyPair> apiKeys) {
 		Properties props = new Properties();
 		
@@ -58,6 +63,17 @@ public class FlowdockConfigurationManager {
 		
 		this.bandanaManager.setValue(new ConfluenceBandanaContext(),
 				FLOWDOCK_API_KEYS, out.toString());
+	}
+	
+	public String getApiKeyForSpace(Space space) {
+		List<ApiKeyPair> pairs = this.getFlowdockApiKeys();
+		for (ApiKeyPair pair : pairs) {
+			if (pair.getSpace() == space) {
+				return pair.getApiKey();
+			}
+		}
+		
+		return null;
 	}
 	
 	// Bean configuration

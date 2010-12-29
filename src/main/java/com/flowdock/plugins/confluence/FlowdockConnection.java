@@ -16,17 +16,17 @@ import java.util.Map.Entry;
 public class FlowdockConnection {
 	public static void main(String[] args) {
 		System.out.println("TESTING");
-		sendApiMessage(null);
+		sendApiMessage(null, "1234");
 		System.out.println("DONE");
 	}
 	
-	public static void sendApiMessage(Map<String, String> params) {
-		if (params == null) {
+	public static void sendApiMessage(Map<String, String> params, String apiKey) {
+		if (params == null || apiKey == null) {
 			return;
 		}
 		
 		try {
-			URL apiUrl = getApiUrl();
+			URL apiUrl = getApiUrl(apiKey);
 			postData(apiUrl, params);
 		} catch (MalformedURLException mue) {
 			
@@ -74,7 +74,7 @@ public class FlowdockConnection {
 		return sb.toString();
 	}
 	
-	private static URL getApiUrl() throws MalformedURLException {
+	private static URL getApiUrl(String apiKey) throws MalformedURLException {
 		return new URL("http://www.postbin.org/r8amos");
 	}
 }

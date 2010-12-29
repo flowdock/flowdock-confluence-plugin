@@ -30,7 +30,11 @@ public class ApiKeyPair {
 	}
 
 	public void setApiKey(String key) {
-		this.apiKey = key;
+		if (key == null || key == "") {
+			this.apiKey = null;
+		} else {
+			this.apiKey = key;
+		}
 	}
 
 	public String getApiKey() {
