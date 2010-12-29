@@ -10,12 +10,12 @@
     <version>1.0</version>
 
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Flowdock Ltd</name>
+        <url>http://www.flowdock.com/</url>
     </organization>
 
-    <name>flowdock-confluence-plugin</name>
-    <description>This is the com.flowdock.plugins.confluence:flowdock-confluence-plugin plugin for Atlassian Confluence.</description>
+    <name>Flowdock integration</name>
+    <description>Flowdock is the most advanced team messenger. This plugin streams your changes from Confluence to your team's Flowdock flow.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>

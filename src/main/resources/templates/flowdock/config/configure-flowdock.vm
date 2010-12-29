@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>$action.getText("flowdock.config.title")</title>
+</head>
+<body>
+	#parse ( "/template/includes/actionmessages.vm" )
+	#parse ( "/template/includes/actionerrors.vm" )
+	
+	#if ($spaces.size() > 0)
+		<table border=1>
+		#foreach ($space in $spaces)
+			<tr>
+				<td>
+					<strong>$space.name</strong><br/>
+					$space.description.toString
+				</td>
+				<td>
+					API key: <input type="text" size=20 name="api_for_space">
+				</td>
+			</tr>
+		#end
+		</table>
+	#else
+		<p>No spaces configured. Please add some spaces first.</p>
+	#end
+	
+	<p>OTTO KONFFAA</p>
+</body>
+</html>

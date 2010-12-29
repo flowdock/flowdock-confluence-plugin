@@ -5,6 +5,27 @@
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
         <param name="configure.url">/admin/plugins/flowdock/configurePlugin.action</param>
     </plugin-info>
+    
+    <!-- 
+    Use web-items (at some point) to add links to my action.
+    <web-item name="add-draft-label-action-web-ui" key="add-draft-label-action-web-ui" section="system.content.action/primary" weight="10">
+    <description key="item.add-draft-label-action-web-ui.link.desc">Adds the "Add 'draft' label" action into the Tools menu.</description>
+    <label key="Add ''draft'' label"/>
+    <link linkId="add-draft-label-action">/plugins/add-draft-label/add-label.action?pageId=$page.id</link>
+</web-item>
+-->
+
+	<xwork name="Configure Flowdock integration" key="flowdock.config.title">
+    	<description key="flowdock.config.description">
+    		Flowdock is the most advanced team messenger. Configure this plugin to integrate your Confluence with Flowdock.
+    	</description>
+    	<package name="flowdock" extends="default" namespace="/admin/plugins/flowdock">
+    		<default-interceptor-ref name="defaultStack"/>
+        	<action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+				<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+			</action>
+    	</package>
+	</xwork>
 
 	<component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="flowdockChangeListener"/>
 </atlassian-plugin>
