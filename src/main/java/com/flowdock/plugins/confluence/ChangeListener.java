@@ -21,8 +21,9 @@ public class ChangeListener {
 	private FlowdockEventRenderer eventRenderer = null;
 	private FlowdockConfigurationManager flowdockConfigurationManager = null;
 	
-	public ChangeListener(EventPublisher eventPublisher) {
+	public ChangeListener(EventPublisher eventPublisher, FlowdockConfigurationManager manager) {
 		this.eventRenderer = new FlowdockEventRenderer();
+		this.setFlowdockConfigurationManager(manager);
 		eventPublisher.register(this);
 	}
 	

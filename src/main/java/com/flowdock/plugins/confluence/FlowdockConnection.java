@@ -14,12 +14,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class FlowdockConnection {
-	public static void main(String[] args) {
-		System.out.println("TESTING");
-		sendApiMessage(null, "1234");
-		System.out.println("DONE");
-	}
-	
 	public static void sendApiMessage(Map<String, String> params, String apiKey) {
 		if (params == null || apiKey == null) {
 			return;

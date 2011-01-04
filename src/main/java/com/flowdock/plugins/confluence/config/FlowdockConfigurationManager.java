@@ -33,7 +33,7 @@ public class FlowdockConfigurationManager {
 	 */
 	public List<ApiKeyPair> getFlowdockApiKeys() {
 		List<ApiKeyPair> result = new ArrayList<ApiKeyPair>();
-		Properties props = readApiKeyProperties();
+		Properties props = this.readApiKeyPropertiesObj();
 		
 		List<Space> spaces = this.spaceManager.getAllSpaces();
 		for (Space space : spaces) {	
@@ -88,10 +88,9 @@ public class FlowdockConfigurationManager {
 	
 	// Helpers
 	
-	private Properties readApiKeyProperties() {
-		String propsString = (String)this.bandanaManager.getValue(
-				new ConfluenceBandanaContext(),
-				FLOWDOCK_API_KEYS);
+	private Properties readApiKeyPropertiesObj() {
+		ConfluenceBandanaContext context = new ConfluenceBandanaContext();
+		String propsString = (String)this.bandanaManager.getValue(context, FLOWDOCK_API_KEYS);
 		if (propsString == null) propsString = ""; // initially it doesn't exist
 		
 		Properties props = new Properties();
