@@ -6,7 +6,7 @@ import java.util.List;
 import com.atlassian.confluence.core.ConfluenceActionSupport;
 
 public class ConfigureFlowdockAction extends ConfluenceActionSupport {
-	private static final long serialVersionUID = -5732284806136026378L;
+	private static final long serialVersionUID = -5732284806136026379L;
 	
 	// Bean configured
 	private FlowdockConfigurationManager flowdockConfigurationManager;
@@ -75,7 +75,10 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		}
 		
 		for (int i=0; i<this.spaceKeys.length; i++) {
-			result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
+      System.out.println("Got spaceKey " + spaceKeys[i] + " and apiKey " + apiKeys[i]);
+      if (apiKeys[i] != null && apiKeys[i] != "") {
+			  result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
+      }
 		}
 		
 		return result;

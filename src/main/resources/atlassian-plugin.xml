@@ -23,16 +23,17 @@
     	</description>
     	<package name="flowdock" extends="default" namespace="/admin/plugins/flowdock">
     		<default-interceptor-ref name="defaultStack"/>
-        	<action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
-				<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
-			</action>
-			<action name="save" method="save" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
-				<result name="error" type="redirect">configurePlugin.action</result>
-				<result name="success" type="redirect">configurePlugin.action</result>
-			</action>
+       	<action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+		  		<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+			  </action>
+			  <action name="save" method="save" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+			  	<result name="error" type="redirect">configurePlugin.action</result>
+		  		<result name="success" type="redirect">configurePlugin.action</result>
+		  	</action>
     	</package>
 	</xwork>
 
 	<component name="Flowdock Configuration manager" class="com.flowdock.plugins.confluence.config.FlowdockConfigurationManager" key="flowdockConfigurationManager"/>
 	<component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="changeListener"/>
+  <component name="Flowdock Event Renderer" class="com.flowdock.plugins.confluence.FlowdockEventRenderer" key="eventRenderer"/>
 </atlassian-plugin>

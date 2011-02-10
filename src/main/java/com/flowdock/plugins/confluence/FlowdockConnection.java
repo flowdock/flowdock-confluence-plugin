@@ -69,6 +69,6 @@ public class FlowdockConnection {
 	}
 	
 	private static URL getApiUrl(String apiKey) throws MalformedURLException {
-		return new URL("http://www.postbin.org/r8amos");
+		return new URL("https://api.tuntivirta.com/v1/confluence/" + apiKey);
 	}
 }

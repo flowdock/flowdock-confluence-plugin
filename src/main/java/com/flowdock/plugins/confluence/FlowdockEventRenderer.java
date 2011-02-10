@@ -56,17 +56,17 @@ public class FlowdockEventRenderer {
 		result.put("user_name", user.getFullName());
 		
 		if (event instanceof PageCreateEvent) {
-			result.put("action", "create");
+			result.put("event", "create");
 			
 			String content = event.getPage().getContent();
 			result.put("content_summary", GeneralUtil.makeSummary(content).toString());
 		} else if (event instanceof PageTrashedEvent) {
-			result.put("action", "delete");
+			result.put("event", "delete");
 			
 			String content = event.getPage().getContent();
 			result.put("content_summary", GeneralUtil.makeSummary(content).toString());
 		} else if (event instanceof PageUpdateEvent) {
-			result.put("action", "update");
+			result.put("event", "update");
 			result.put("diff", getDiff((PageUpdateEvent)event));
 
 			String content = event.getPage().getContent();
