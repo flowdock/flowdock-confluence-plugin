@@ -75,7 +75,6 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		}
 		
 		for (int i=0; i<this.spaceKeys.length; i++) {
-      System.out.println("Got spaceKey " + spaceKeys[i] + " and apiKey " + apiKeys[i]);
       if (apiKeys[i] != null && apiKeys[i] != "") {
 			  result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
       }
