@@ -17,7 +17,7 @@
 </web-item>
 -->
 
-	<xwork name="Configure Flowdock integration" key="flowdock.config.title">
+	<xwork name="Configure Flowdock integration" key="configureFlowdock">
     	<description key="flowdock.config.description">
     		Flowdock is the most advanced team messenger. Configure this plugin to integrate your Confluence with Flowdock.
     	</description>
