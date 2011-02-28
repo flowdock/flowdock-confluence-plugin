@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <organization>
         <name>Flowdock Ltd</name>
