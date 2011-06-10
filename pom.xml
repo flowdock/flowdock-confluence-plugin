@@ -7,14 +7,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <organization>
         <name>Flowdock Ltd</name>
         <url>http://www.flowdock.com/</url>
     </organization>
 
-    <name>Flowdock integration</name>
+    <name>Flowdock for Confluence</name>
     <description>Flowdock is the most advanced team messenger. This plugin streams your changes from Confluence to your team's Flowdock flow.</description>
     <packaging>atlassian-plugin</packaging>
 

@@ -166,6 +166,7 @@
 	#if ($apiKeyPairs.size() > 0)
     <div class="flowdock-container">
 		  <form action="save.action" method="post">
+		  #form_xsrfToken()
         #foreach ($apiKeyPair in $apiKeyPairs)
         <div class="item-wrapper">
           <div class="item">

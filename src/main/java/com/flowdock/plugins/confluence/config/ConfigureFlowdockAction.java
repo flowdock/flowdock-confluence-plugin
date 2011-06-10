@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.atlassian.confluence.core.ConfluenceActionSupport;
+import com.atlassian.xwork.RequireSecurityToken;
 
 public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 	private static final long serialVersionUID = -5732284806136026379L;
@@ -23,6 +24,7 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		return INPUT;
 	}
 	
+	@RequireSecurityToken(true)
 	public String save() {
 		this.updateTemplateData();
 		addActionMessage(getText("successfully.saved.api.keys"));
