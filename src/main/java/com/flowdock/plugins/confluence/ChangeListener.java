@@ -47,8 +47,14 @@ public class ChangeListener {
 		this.flowdockConfigurationManager = manager;
 	}
 	
-	private void sendNotification(PageEvent event) {
-		String apiKey = this.flowdockConfigurationManager.getApiKeyForSpace(event.getPage().getSpace());
-		FlowdockConnection.sendApiMessage(this.eventRenderer.renderEvent(event), apiKey);
+	private void sendNotification(final PageEvent event) {
+		final String apiKey = flowdockConfigurationManager.getApiKeyForSpace(event.getPage().getSpace());
+		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				FlowdockConnection.sendApiMessage(eventRenderer.renderEvent(event), apiKey);
+			}
+		});
+		t.start();
 	}
 }
