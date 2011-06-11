@@ -1,9 +1,12 @@
 package com.flowdock.plugins.confluence;
 
+import com.atlassian.confluence.event.events.content.ContentEvent;
+import com.atlassian.confluence.event.events.content.comment.CommentCreateEvent;
 import com.atlassian.confluence.event.events.content.page.PageCreateEvent;
 import com.atlassian.confluence.event.events.content.page.PageEvent;
 import com.atlassian.confluence.event.events.content.page.PageTrashedEvent;
 import com.atlassian.confluence.event.events.content.page.PageUpdateEvent;
+import com.atlassian.confluence.pages.Page;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
 import com.flowdock.plugins.confluence.config.FlowdockConfigurationManager;
@@ -42,13 +45,29 @@ public class ChangeListener {
 		this.sendNotification(event);
 	}
 	
+	@EventListener
+	public void commentCreateEvent(CommentCreateEvent event) {
+		this.sendNotification(event);
+	}
+	
 	// Bean configuration
 	public void setFlowdockConfigurationManager(FlowdockConfigurationManager manager) {
 		this.flowdockConfigurationManager = manager;
 	}
 	
+	private void sendNotification(final CommentCreateEvent event) {
+		if (event.getComment().getOwner().getType() == "page") {
+			Page page = (Page)event.getComment().getOwner();
+			this.sendNotification(page, event);
+		}
+	}
+	
 	private void sendNotification(final PageEvent event) {
-		final String apiKey = flowdockConfigurationManager.getApiKeyForSpace(event.getPage().getSpace());
+		this.sendNotification(event.getPage(), event);
+	}
+	
+	private void sendNotification(final Page page, final ContentEvent event) {
+		final String apiKey = flowdockConfigurationManager.getApiKeyForSpace(page.getSpace());
 		
 		Thread t = new Thread(new Runnable() {
 			public void run() {
