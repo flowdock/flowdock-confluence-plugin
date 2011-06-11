@@ -7,19 +7,19 @@
 	#parse ( "/template/includes/actionerrors.vm" )
 
 <style type="text/css">
-.pagebody .content {
+div.content {
   margin: 0 0 0 20px;
   font-size: 15px;
 }
-.pagebody .content .flowdock-header {
+.content .flowdock-header {
   margin-bottom: 20px;
   height: 85px;
 }
-.pagebody .content .flowdock-container {
+.content .flowdock-container {
   float: left;
   margin: 15px 0 15px 0;
 }
-.pagebody .content .description {
+.content .description {
         float: left;
   width: 400px;
   font-size: 18px;
@@ -29,26 +29,37 @@
   font-family: Helvetica, Arial, sans-serif;
   color: #474747;
 }
-.pagebody .content .description a:link,
-.pagebody .content .description a:active{
+.content .description a:link,
+.content .description a:active{
         color: #0072bc;
         text-decoration: none;
 }
-.pagebody .content .description a:visited {
+.content .description a:visited {
         color: #0072bc;
         text-decoration: none;
 }
-.pagebody .content .description a:hover {
+.content .description a:hover {
         color: #000;
 }
-.pagebody .content .flowdock-logo {
+.content .flowdock-logo {
         float: left;
         width: 78px;
         height: 85px;
         padding-right: 10px;
         background: #FFF url('https://static.flowdock.com/images/confluence/flowdock-logo-notext-dropshadow.png') no-repeat;
 }
-.pagebody .content .item {
+
+.content .header {
+  float: left;
+  padding: 0 14px 0 19px;
+  font-size: 17px !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  line-height: 40px;
+}
+
+
+.content .item {
   float: left;
   padding: 14px 14px 14px 19px;
   border: 1px solid #d4d4d4;
@@ -63,49 +74,57 @@
   box-shadow:inset 0 0 10px #FFF;
   text-shadow: 0 1px 0px #FFF;
 }
-.pagebody .content .item-wrapper {
+
+.content .item-wrapper, .content .header-wrapper {
         float: left;
+        clear: both;
         margin: 0 0 10px 0;
         padding: 0;
+        font-size: 15px;
+}
+
+.content .item-wrapper {
         -moz-box-shadow: 0 0 5px #e2e2e2;
          -webkit-box-shadow: 0 0 5px #e2e2e2;
          box-shadow: 0 0 5px #e2e2e2;
 }
 
-.pagebody .content .item:hover {
+.content .item:hover {
   background-color: #F1F1F1;
   border: 3px solid rgba(42,169,230,0.3);
   padding: 12px 12px 12px 17px;
 }
-.pagebody .content .column-left {
+.content .column-left {
   float: left;
-  width: 230px;
+  width: 200px;
   margin: auto 0 auto 0;
   padding-right: 20px;
-  font-size: 15px;
-  font-weight: bold;
   border-right: 1px solid #FFF;
 }
-.pagebody .content .column-left p {
+.content .column-left p {
   margin: 0 0 0 0;
   font-size: 13px;
   line-height: 20px;
   color: #474747;
 }
-.pagebody .content .column-right {
+.content .column-right {
   float: left;
   height: 100%;
   line-height: 40px;
   padding-left: 20px;
+}
+
+.content .item .column-right {
   border-left: 1px solid #e2e2e2;
 }
-.pagebody .content .column-right .apikey {
-        width: 150px;
-        height: 20px;
+
+.content .column-right .apikey {
+        width: 240px;
+        height: 14px;
         background: #FFF url('https://static.flowdock.com/images/confluence/bullet_key.png') no-repeat 98% 50%;
         padding: 3px 25px 3px 3px;
         line-height: 20px;
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Lucida Console", "Verdana", "Arial", sans-serif;
   color: #474747;
         border: 2px solid #d4d4d4;
@@ -113,38 +132,12 @@
         -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.pagebody .content .column-right .apikey:focus {
+.content .column-right .apikey:focus {
   color: #000;
   background-color: #FFFDCC;
 }
-.pagebody .content .flowdock-container button.submit-button {
-  margin-top: 10px;
-  padding: 3px;
-  height: 35px;
-  width: 150px;
-  float: left;
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 35px;
-  color: #474747;
-  background-color: #F0F0F0;
-  border: 1px solid #d4d4d4;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  -moz-box-shadow: 0 0 5px #e2e2e2;
-  -webkit-box-shadow: 0 0 5px #e2e2e2;
-  box-shadow: 0 0 5px #e2e2e2;
-  text-shadow: 0 1px 0px #FFF;
-}
-.pagebody .content .flowdock-container button.submit-button:hover {
-  background-color: #F1F1F1;
-  border: 3px solid rgba(42,169,230,0.3);
-  padding: 0;
-  color: #000;
-}
-.pagebody .content .flowdock-container img.tick {
+
+.content .flowdock-container img.tick {
   height: 16px;
   width: 16px;
   padding: 0;
@@ -165,8 +158,16 @@
 	
 	#if ($apiKeyPairs.size() > 0)
     <div class="flowdock-container">
-		  <form action="save.action" method="post">
-		  #form_xsrfToken()
+	  <form action="save.action" method="post">
+		#form_xsrfToken()
+		
+		<div class="header-wrapper header">
+          <div class="header">
+            <div class="column-left">Space</div>
+            <div class="column-right">Flow API Token</div>
+          </div>
+        </div>
+        
         #foreach ($apiKeyPair in $apiKeyPairs)
         <div class="item-wrapper">
           <div class="item">
@@ -175,14 +176,14 @@
               <input type="hidden" name="spaceKeys" value="$apiKeyPair.spaceKey"/>
             </div>
             <div class="column-right">
-					    <input type="text" size=35 name="apiKeys" value="$!generalUtil.escapeForJavascript($apiKeyPair.apiKey)"/>
+					    <input type="text" size=35 name="apiKeys" class="apikey" value="$!generalUtil.escapeForJavascript($apiKeyPair.apiKey)"/>
             </div>
           </div>
         </div>
         <div style="clear: both"/>
         #end
       </form>
-      <button type="submit" value="Save changes">Save changes</button>
+      <input type="submit" class="spaced" value="Save changes"/>
     </div>
 	#else
 		<p>$action.getText("flowdock.config.no.spaces")</p>
