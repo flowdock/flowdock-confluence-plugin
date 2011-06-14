@@ -3,6 +3,7 @@
 	<title>$action.getText("flowdock.config.title")</title>
 </head>
 <body>
+    #htmlSafe()
 	#parse ( "/template/includes/actionmessages.vm" )
 	#parse ( "/template/includes/actionerrors.vm" )
 
