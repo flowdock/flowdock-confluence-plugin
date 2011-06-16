@@ -117,7 +117,8 @@ public class FlowdockEventRenderer {
 		result.put("page_url", baseUrl + GeneralUtil.getPageUrl(page));
 		
 		// Comment
-		result.put("comment_content", event.getComment().getContent().toString());
+		result.put("comment_content_summary", GeneralUtil.makeSummary(event.getComment().getContent()).toString());
+		
 		result.put("comment_url", baseUrl + event.getComment().getUrlPath());
 		
 		// User
