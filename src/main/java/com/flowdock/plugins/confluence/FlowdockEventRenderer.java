@@ -69,19 +69,19 @@ public class FlowdockEventRenderer {
 		if (event instanceof PageCreateEvent) {
 			result.put("event", "create");
 			
-			String content = event.getPage().getContent();
-			result.put("content_summary", GeneralUtil.makeSummary(content).toString());
+			String content = event.getPage().getBodyAsString();
+			result.put("content_summary", content);
 		} else if (event instanceof PageTrashedEvent) {
 			result.put("event", "delete");
 			
-			String content = event.getPage().getContent();
-			result.put("content_summary", GeneralUtil.makeSummary(content).toString());
+			String content = event.getPage().getBodyAsString();
+			result.put("content_summary", content);
 		} else if (event instanceof PageUpdateEvent) {
 			result.put("event", "update");
 			result.put("diff", getDiff((PageUpdateEvent)event));
 
-			String content = event.getPage().getContent();
-			result.put("content_summary", GeneralUtil.makeSummary(content).toString());	
+			String content = event.getPage().getBodyAsString();
+			result.put("content_summary", content);	
 		} else {
 			throw new RuntimeException("Unknown page event type.");
 		}
@@ -117,7 +117,7 @@ public class FlowdockEventRenderer {
 		result.put("page_url", baseUrl + GeneralUtil.getPageUrl(page));
 		
 		// Comment
-		result.put("comment_content_summary", GeneralUtil.makeSummary(event.getComment().getContent()).toString());
+		result.put("comment_content_summary", event.getComment().getBodyAsStringWithoutMarkup());
 		
 		result.put("comment_url", baseUrl + event.getComment().getUrlPath());
 		
