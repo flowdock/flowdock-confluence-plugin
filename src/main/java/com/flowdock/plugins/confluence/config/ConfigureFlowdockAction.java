@@ -75,13 +75,13 @@ public class ConfigureFlowdockAction extends ConfluenceActionSupport {
 		if (this.spaceKeys == null || this.apiKeys == null || this.spaceKeys.length != this.apiKeys.length) {
 			return result;
 		}
-		
+
 		for (int i=0; i<this.spaceKeys.length; i++) {
-      if (apiKeys[i] != null && apiKeys[i] != "") {
-			  result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
-      }
+			if (apiKeys[i] != null && apiKeys[i] != "") {
+				result.add(new ApiKeyPair(spaceKeys[i], apiKeys[i]));
+			}
 		}
-		
+
 		return result;
 	}
 }

@@ -62,7 +62,7 @@ public class FlowdockConfigurationManager {
 		} catch (IOException ioe) {} // seems unlikely to happen
 		
 		this.bandanaManager.setValue(new ConfluenceBandanaContext(),
-				FLOWDOCK_API_KEYS, out.toString());
+			FLOWDOCK_API_KEYS, out.toString());
 	}
 	
 	public String getApiKeyForSpace(Space space) {
