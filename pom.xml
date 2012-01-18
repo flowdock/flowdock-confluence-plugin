@@ -56,7 +56,7 @@
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>maven-confluence-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <productVersion>${confluence.version}</productVersion>
@@ -66,8 +66,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -75,7 +75,8 @@
 
     <properties>
         <confluence.version>4.0</confluence.version>
-        <confluence.data.version>LATEST</confluence.data.version>
+        <confluence.data.version>3.5</confluence.data.version>
+        <amps.version>3.7.2</amps.version>
     </properties>
 
 </project>
