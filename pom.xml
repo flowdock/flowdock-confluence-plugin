@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <organization>
         <name>Flowdock Ltd</name>
@@ -30,6 +30,12 @@
             <artifactId>confluence</artifactId>
             <version>${confluence.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>connector</artifactId>
+                    <groupId>javax.resource</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.atlassian.confluence.plugin</groupId>
@@ -48,6 +54,19 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins.rest</groupId>
+            <artifactId>com.atlassian.jersey-library</artifactId>
+            <version>2.6.3.1</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins.rest</groupId>
+            <artifactId>atlassian-rest-common</artifactId>
+            <version>2.6.3.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -74,9 +93,9 @@
     </build>
 
     <properties>
-        <confluence.version>4.1</confluence.version>
+        <confluence.version>4.2</confluence.version>
         <confluence.data.version>3.5</confluence.data.version>
-        <amps.version>3.7.2</amps.version>
+        <amps.version>3.10.2</amps.version>
     </properties>
 
 </project>
