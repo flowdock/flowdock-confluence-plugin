@@ -5,35 +5,26 @@
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
         <param name="configure.url">/admin/plugins/flowdock/configurePlugin.action</param>
     </plugin-info>
-    
+
     <resource type="i18n" name="i18n" location="flowdock"/>
-    
-    <!-- 
-    Use web-items (at some point) to add links to my action.
-    <web-item name="add-draft-label-action-web-ui" key="add-draft-label-action-web-ui" section="system.content.action/primary" weight="10">
-    <description key="item.add-draft-label-action-web-ui.link.desc">Adds the "Add 'draft' label" action into the Tools menu.</description>
-    <label key="Add ''draft'' label"/>
-    <link linkId="add-draft-label-action">/plugins/add-draft-label/add-label.action?pageId=$page.id</link>
-</web-item>
--->
 
-	<xwork name="Configure Flowdock integration" key="configureFlowdock">
-    	<description key="flowdock.config.description">
-    		Flowdock is the most advanced team messenger. Configure this plugin to integrate your Confluence with Flowdock.
-    	</description>
-    	<package name="flowdock" extends="default" namespace="/admin/plugins/flowdock">
-    		<default-interceptor-ref name="defaultStack"/>
-       	<action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
-		  		<result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
-			  </action>
-			  <action name="save" method="save" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
-			  	<result name="error" type="redirect">configurePlugin.action</result>
-		  		<result name="success" type="redirect">configurePlugin.action</result>
-		  	</action>
-    	</package>
-	</xwork>
+    <xwork name="Configure Flowdock integration" key="configureFlowdock">
+        <description key="flowdock.config.description">
+            Flowdock is the most advanced team messenger. Configure this plugin to integrate your Confluence with Flowdock.
+        </description>
+        <package name="flowdock" extends="default" namespace="/admin/plugins/flowdock">
+            <default-interceptor-ref name="defaultStack"/>
+            <action name="configurePlugin" method="input" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+                <result name="input" type="velocity">/templates/flowdock/config/configure-flowdock.vm</result>
+            </action>
+            <action name="save" method="save" class="com.flowdock.plugins.confluence.config.ConfigureFlowdockAction">
+                <result name="error" type="redirect">configurePlugin.action</result>
+                <result name="success" type="redirect">configurePlugin.action</result>
+            </action>
+        </package>
+    </xwork>
 
-	<component name="Flowdock Configuration manager" class="com.flowdock.plugins.confluence.config.FlowdockConfigurationManager" key="flowdockConfigurationManager"/>
-	<component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="changeListener"/>
-  <component name="Flowdock Event Renderer" class="com.flowdock.plugins.confluence.FlowdockEventRenderer" key="eventRenderer"/>
+    <component name="Flowdock Configuration manager" class="com.flowdock.plugins.confluence.config.FlowdockConfigurationManager" key="flowdockConfigurationManager"/>
+    <component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="changeListener"/>
+    <component name="Flowdock Event Renderer" class="com.flowdock.plugins.confluence.FlowdockEventRenderer" key="eventRenderer"/>
 </atlassian-plugin>
