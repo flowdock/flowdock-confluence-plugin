@@ -24,6 +24,13 @@
         </package>
     </xwork>
 
+    <web-item key="configure-flowdock-menu" name="Flowdock Configuration" section="system.admin/configuration" weight="1001">
+        <description key="flowdock.config.title">Flowdock integration</description>
+        <label key="flowdock.config.title"/>
+        <link linkId="flowdock-configuration">/admin/plugins/flowdock/configurePlugin.action</link>
+        <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ConfluenceAdministratorCondition"/>
+    </web-item>
+
     <component name="Flowdock Configuration manager" class="com.flowdock.plugins.confluence.config.FlowdockConfigurationManager" key="flowdockConfigurationManager"/>
     <component name="Flowdock Change Listener" class="com.flowdock.plugins.confluence.ChangeListener" key="changeListener"/>
     <component name="Flowdock Event Renderer" class="com.flowdock.plugins.confluence.FlowdockEventRenderer" key="eventRenderer"/>
