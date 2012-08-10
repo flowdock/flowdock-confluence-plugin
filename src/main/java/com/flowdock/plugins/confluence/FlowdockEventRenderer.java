@@ -8,6 +8,7 @@ import org.apache.commons.jrcs.diff.DifferentiationFailedException;
 import com.atlassian.confluence.core.ContentEntityObject;
 import com.atlassian.confluence.diff.ChangeChunk;
 import com.atlassian.confluence.diff.ConfluenceDiff;
+import com.atlassian.confluence.diff.LineLevelDiffer;
 import com.atlassian.confluence.diff.renderer.StaticHtmlChangeChunkRenderer;
 import com.atlassian.confluence.event.events.content.ContentEvent;
 import com.atlassian.confluence.event.events.content.comment.CommentCreateEvent;
@@ -134,14 +135,16 @@ public class FlowdockEventRenderer {
 	
 	private String getDiff(PageUpdateEvent event) {
 		StaticHtmlChangeChunkRenderer renderer = StaticHtmlChangeChunkRenderer.INSTANCE;
-		ContentEntityObject originalContent = event.getOriginalPage();
-		ContentEntityObject content = event.getPage();
+
+		String oldBody = event.getOriginalPage().getBodyAsStringWithoutMarkup();
+		String newBody = event.getPage().getBodyAsStringWithoutMarkup();
+
 		StringBuffer output = new StringBuffer();
 		
 		try {
-			ConfluenceDiff diff = new ConfluenceDiff(originalContent, content, true);
+			LineLevelDiffer differ = new LineLevelDiffer();
 			
-			for (ChangeChunk chunk : diff.getChunks()) {
+			for (ChangeChunk chunk : differ.diff(oldBody, newBody, false)) {
 				// example chunk:
 				// <tr><td class="diff-added-lines" style="background-color: #dfd;"> <br>THIS IS SO AWESOME <br></td></tr>
 				String chunkText = renderer.getFormattedText(chunk);
