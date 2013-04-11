@@ -93,7 +93,7 @@
     </build>
 
     <properties>
-        <confluence.version>4.3</confluence.version>
+        <confluence.version>5.1</confluence.version>
         <confluence.data.version>LATEST</confluence.data.version>
         <amps.version>3.10.2</amps.version>
     </properties>
