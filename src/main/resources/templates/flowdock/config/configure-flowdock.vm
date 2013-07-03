@@ -47,7 +47,7 @@ div.content {
         width: 78px;
         height: 85px;
         padding-right: 10px;
-        background: #FFF url('https://static.flowdock.com/images/confluence/flowdock-logo-notext-dropshadow.png') no-repeat;
+        background: #FFF url('https://d2ph5hv9wbwvla.cloudfront.net/images/flowdock-logo-notext-dropshadow.png') no-repeat;
 }
 
 .content .header {
@@ -122,7 +122,7 @@ div.content {
 .content .column-right .apikey {
         width: 240px;
         height: 14px;
-        background: #FFF url('https://static.flowdock.com/images/confluence/bullet_key.png') no-repeat 98% 50%;
+        background: #FFF url('https://d2ph5hv9wbwvla.cloudfront.net/images/bullet_key.png') no-repeat 98% 50%;
         padding: 3px 25px 3px 3px;
         line-height: 20px;
   font-size: 12px;
