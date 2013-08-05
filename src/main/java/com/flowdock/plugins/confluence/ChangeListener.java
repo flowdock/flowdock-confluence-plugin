@@ -10,6 +10,7 @@ import com.atlassian.confluence.pages.Page;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
 import com.flowdock.plugins.confluence.config.FlowdockConfigurationManager;
+import org.springframework.beans.factory.DisposableBean;
 
 /**
  * Listen to all kinds of events we're aware of.
@@ -20,12 +21,14 @@ import com.flowdock.plugins.confluence.config.FlowdockConfigurationManager;
  * @author mutru
  *
  */
-public class ChangeListener {
+public class ChangeListener implements DisposableBean {
 	private FlowdockEventRenderer eventRenderer = null;
 	private FlowdockConfigurationManager flowdockConfigurationManager = null;
+    protected EventPublisher eventPublisher;
 	
 	public ChangeListener(EventPublisher eventPublisher, FlowdockConfigurationManager manager, FlowdockEventRenderer eventRenderer) {
 		this.eventRenderer = eventRenderer;
+        this.eventPublisher = eventPublisher;
 		this.setFlowdockConfigurationManager(manager);
 		eventPublisher.register(this);
 	}
@@ -76,4 +79,10 @@ public class ChangeListener {
 		});
 		t.start();
 	}
+
+    // Unregister the listener if the plugin is uninstalled or disabled.
+    public void destroy() throws Exception
+    {
+        eventPublisher.unregister(this);
+    }
 }
