@@ -24,11 +24,11 @@ import org.springframework.beans.factory.DisposableBean;
 public class ChangeListener implements DisposableBean {
 	private FlowdockEventRenderer eventRenderer = null;
 	private FlowdockConfigurationManager flowdockConfigurationManager = null;
-    protected EventPublisher eventPublisher;
+	protected EventPublisher eventPublisher;
 	
 	public ChangeListener(EventPublisher eventPublisher, FlowdockConfigurationManager manager, FlowdockEventRenderer eventRenderer) {
 		this.eventRenderer = eventRenderer;
-        this.eventPublisher = eventPublisher;
+		this.eventPublisher = eventPublisher;
 		this.setFlowdockConfigurationManager(manager);
 		eventPublisher.register(this);
 	}
@@ -80,9 +80,9 @@ public class ChangeListener implements DisposableBean {
 		t.start();
 	}
 
-    // Unregister the listener if the plugin is uninstalled or disabled.
-    public void destroy() throws Exception
-    {
-        eventPublisher.unregister(this);
-    }
+	// Unregister the listener if the plugin is uninstalled or disabled.
+	public void destroy() throws Exception
+	{
+		eventPublisher.unregister(this);
+	}
 }
