@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>1.0.4</version>
-
+    <version>1.0.5</version>
     <organization>
         <name>Flowdock Ltd</name>
         <url>http://www.flowdock.com/</url>
     </organization>
-
     <name>Flowdock for Confluence</name>
     <description>Flowdock is the most advanced team messenger. This plugin streams your changes from Confluence to your team's Flowdock flow.</description>
     <packaging>atlassian-plugin</packaging>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -69,7 +63,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -91,11 +84,9 @@
             </plugin>
         </plugins>
     </build>
-
     <properties>
         <confluence.version>5.1</confluence.version>
         <confluence.data.version>LATEST</confluence.data.version>
-        <amps.version>3.10.2</amps.version>
+        <amps.version>4.2.10</amps.version>
     </properties>
-
 </project>
