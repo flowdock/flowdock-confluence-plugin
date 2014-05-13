@@ -85,8 +85,8 @@
         </plugins>
     </build>
     <properties>
-        <confluence.version>5.1</confluence.version>
+        <confluence.version>5.5</confluence.version>
         <confluence.data.version>LATEST</confluence.data.version>
-        <amps.version>4.2.10</amps.version>
+        <amps.version>4.2.20</amps.version>
     </properties>
 </project>
