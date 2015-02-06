@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <organization>
         <name>Flowdock Ltd</name>
         <url>http://www.flowdock.com/</url>
@@ -52,14 +52,14 @@
         <dependency>
             <groupId>com.atlassian.plugins.rest</groupId>
             <artifactId>com.atlassian.jersey-library</artifactId>
-            <version>2.6.3.1</version>
+            <version>2.9.8</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.atlassian.plugins.rest</groupId>
             <artifactId>atlassian-rest-common</artifactId>
-            <version>2.6.3.1</version>
+            <version>2.9.8</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -85,8 +85,8 @@
         </plugins>
     </build>
     <properties>
-        <confluence.version>5.5</confluence.version>
+        <confluence.version>5.7</confluence.version>
         <confluence.data.version>LATEST</confluence.data.version>
-        <amps.version>4.2.20</amps.version>
+        <amps.version>6.0.0</amps.version>
     </properties>
 </project>
