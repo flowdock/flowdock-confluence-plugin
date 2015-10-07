@@ -15,34 +15,34 @@ public class FlowdockConnection {
 		if (params == null || apiKey == null) {
 			return;
 		}
-		
+
 		try {
 			URL apiUrl = getApiUrl(apiKey);
 			postData(apiUrl, params);
 		} catch (MalformedURLException mue) {
-			
+
 		} catch (IOException ioe) {
-			
+
 		}
 	}
-	
+
 	private static void postData(URL apiUrl, JsonObject params) throws IOException {
-		HttpURLConnection conn = (HttpURLConnection)apiUrl.openConnection();
+		HttpURLConnection conn = (HttpURLConnection) apiUrl.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setUseCaches(false);
 		conn.setDoOutput(true);
 		conn.setDoInput(true);
 		conn.setRequestProperty("Content-Type", "application/json");
 		conn.setRequestProperty("User-Agent", "Flowdock Confluence Plugin");
-		
+
 		OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
 		out.write(params.serialize());
 		out.close();
-		
+
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		while (in.readLine() != null);
 		in.close();
-		
+
 		conn.connect();
 	}
 
