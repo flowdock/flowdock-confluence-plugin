@@ -120,8 +120,6 @@ div.content {
 }
 
 .content .column-right .apikey {
-        width: 240px;
-        height: 14px;
         background: #FFF url('https://d2ph5hv9wbwvla.cloudfront.net/images/bullet_key.png') no-repeat 98% 50%;
         padding: 3px 25px 3px 3px;
         line-height: 20px;
@@ -165,7 +163,7 @@ div.content {
 		<div class="header-wrapper header">
           <div class="header">
             <div class="column-left">Space</div>
-            <div class="column-right">Flow API Token</div>
+            <div class="column-right">Flow Source Tokens (comma separated)</div>
           </div>
         </div>
         
@@ -177,7 +175,7 @@ div.content {
               <input type="hidden" name="spaceKeys" value="$apiKeyPair.spaceKey"/>
             </div>
             <div class="column-right">
-					    <input type="text" size=35 name="apiKeys" class="apikey" value="$!generalUtil.escapeForJavascript($apiKeyPair.apiKey)"/>
+					    <input type="text" size=100 name="apiKeys" class="apikey" value="$!generalUtil.escapeForJavascript($apiKeyPair.apiKey)"/>
             </div>
           </div>
         </div>

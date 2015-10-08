@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import com.atlassian.confluence.json.json.JsonObject;
 
@@ -17,7 +18,7 @@ public class FlowdockConnection {
 		}
 
 		try {
-			URL apiUrl = getApiUrl(apiKey);
+			URL apiUrl = getApiUrl(URLEncoder.encode(apiKey, "UTF-8"));
 			postData(apiUrl, params);
 		} catch (MalformedURLException mue) {
 
@@ -46,7 +47,7 @@ public class FlowdockConnection {
 		conn.connect();
 	}
 
-	private static URL getApiUrl(String apiKey) throws MalformedURLException {
-		return new URL("https://www.flowdock.com/jari/confluence/messages/" + apiKey);
+	private static URL getApiUrl(String encodedApiKey) throws MalformedURLException {
+		return new URL("https://www.flowdock.com/jari/confluence/messages/?tokens=" + encodedApiKey);
 	}
 }
