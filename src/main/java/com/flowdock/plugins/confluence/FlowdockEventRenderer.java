@@ -82,6 +82,7 @@ public class FlowdockEventRenderer {
 		JsonObject result = new JsonObject();
 		result.setProperty("object", renderContentJson(event.getContent()));
 		result.setProperty("event", eventMap.get(event.getClass()));
+		result.setProperty("base_url", getBaseUrl());
 		User user = this.findEventUser(event);
 		if (user != null)
 			result.setProperty("user", renderUserData(user));
