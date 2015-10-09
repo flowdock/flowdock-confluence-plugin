@@ -37,14 +37,18 @@ public class FlowdockConnection {
 		conn.setRequestProperty("User-Agent", "Flowdock Confluence Plugin");
 
 		OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-		out.write(params.serialize());
-		out.close();
+		try {
+		  out.write(params.serialize());
+		} finally {
+		  out.close();
+		}
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		while (in.readLine() != null);
-		in.close();
-
-		conn.connect();
+		try {
+			while (in.readLine() != null);
+		} finally {
+			in.close();
+		}
 	}
 
 	private static URL getApiUrl(String encodedApiKey) throws MalformedURLException {
