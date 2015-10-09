@@ -1,7 +1,6 @@
 package com.flowdock.plugins.confluence;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import com.atlassian.confluence.json.json.JsonString;
@@ -124,8 +123,7 @@ public class FlowdockEventRenderer {
 	private JsonObject renderPageData(Page page) {
 		JsonObject result = renderObjectData(page);
 		JsonArray ancestors = new JsonArray();
-		for (Iterator<Page> i = page.getAncestors().iterator(); i.hasNext();) {
-			Page ancestor = i.next();
+		for (Page ancestor : page.getAncestors() ) {
 			JsonObject ancestorJson = new JsonObject();
 			ancestorJson.setProperty("title", ancestor.getTitle());
 			ancestorJson.setProperty("url", getBaseUrl() + ancestor.getUrlPath());
@@ -145,8 +143,8 @@ public class FlowdockEventRenderer {
 		result.setProperty("id", String.valueOf(object.getId()));
 		result.setProperty("type", object.getType());
 		JsonArray arr = new JsonArray();
-		for (Iterator<Label> i = object.getLabels().iterator(); i.hasNext();)
-			arr.add(new JsonString(i.next().getDisplayTitle()));
+		for (Label label : object.getLabels())
+			arr.add(new JsonString(label.getDisplayTitle()));
 		result.setProperty("labels", arr);
 		return result;
 	}
