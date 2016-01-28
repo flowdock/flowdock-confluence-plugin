@@ -18,6 +18,7 @@ import com.atlassian.confluence.event.events.content.blogpost.BlogPostRestoreEve
 import com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent;
 import com.atlassian.confluence.event.events.content.blogpost.BlogPostTrashedEvent;
 import com.atlassian.confluence.pages.AbstractPage;
+import com.atlassian.confluence.json.json.JsonObject;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
 import com.flowdock.plugins.confluence.config.FlowdockConfigurationManager;
@@ -135,9 +136,10 @@ public class ChangeListener implements DisposableBean {
 	}
 
 	private void sendActivity(final ContentEvent event, final String apiKey) {
+		final JsonObject renderedEvent = eventRenderer.renderEvent(event);
 		Thread t = new Thread(new Runnable() {
 			public void run() {
-				FlowdockConnection.sendApiMessage(eventRenderer.renderEvent(event), apiKey);
+				FlowdockConnection.sendApiMessage(renderedEvent, apiKey);
 			}
 		});
 		t.start();
