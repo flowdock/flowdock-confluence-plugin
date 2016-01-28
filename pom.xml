@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flowdock.plugins.confluence</groupId>
     <artifactId>flowdock-confluence-plugin</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <organization>
         <name>Flowdock Ltd</name>
         <url>http://www.flowdock.com/</url>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.6</version>
+            <version>4.10</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -77,6 +77,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -85,8 +86,8 @@
         </plugins>
     </build>
     <properties>
-        <confluence.version>5.8.13</confluence.version>
+        <confluence.version>5.9.4</confluence.version>
         <confluence.data.version>LATEST</confluence.data.version>
-        <amps.version>6.0.0</amps.version>
+        <amps.version>6.2.1</amps.version>
     </properties>
 </project>
